@@ -10,6 +10,7 @@ using BookStore.DataAccess.Interfaces;
 
 namespace BookStore.BusinessLogic.Services.Domain
 {
+    //TODO: Consider adding AutoMapper. (AK)
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;

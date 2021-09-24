@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BookStore.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace BookStore.API.Utilities.Middlewares
 {

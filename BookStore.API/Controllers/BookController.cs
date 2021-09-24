@@ -5,7 +5,6 @@ using BookStore.Contracts.Commands;
 using BookStore.Contracts.Entities;
 using BookStore.Contracts.Queries;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace BookStore.API.Controllers
 {
