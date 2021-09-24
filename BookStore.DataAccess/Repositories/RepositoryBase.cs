@@ -23,14 +23,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+                throw new ApplicationException($"Couldn't retrieve entities: {ex.Message}");
             }
         }
 
         public TEntity Add(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ApplicationException($"{nameof(AddAsync)} entity must not be null");
 
             try
             {
@@ -41,14 +41,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be saved: {ex.Message}", ex);
             }
         }
 
         public async Task<TEntity> AddAsync(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ApplicationException($"{nameof(AddAsync)} entity must not be null");
 
             try
             {
@@ -59,14 +59,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be saved: {ex.Message}", ex);
             }
         }
 
         public TEntity Update(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ApplicationException($"{nameof(AddAsync)} entity must not be null");
 
             try
             {
@@ -77,14 +77,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be updated: {ex.Message}", ex);
             }
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                throw new ApplicationException($"{nameof(AddAsync)} entity must not be null");
 
             try
             {
@@ -95,14 +95,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be updated: {ex.Message}", ex);
             }
         }
 
         public void Remove(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(Remove)} entity must not be null");
+                throw new ApplicationException($"{nameof(Remove)} entity must not be null");
 
             try
             {
@@ -111,14 +111,14 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be updated: {ex.Message}", ex);
             }
         }
 
         public async Task RemoveAsync(TEntity entity)
         {
             if (entity == null)
-                throw new ArgumentNullException($"{nameof(RemoveAsync)} entity must not be null");
+                throw new ApplicationException($"{nameof(RemoveAsync)} entity must not be null");
 
             try
             {
@@ -127,7 +127,7 @@ namespace BookStore.DataAccess.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} could not be updated: {ex.Message}");
+                throw new ApplicationException($"{nameof(entity)} could not be updated: {ex.Message}", ex);
             }
         }
     }

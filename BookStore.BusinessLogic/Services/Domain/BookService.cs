@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BookStore.BusinessLogic.Interfaces;
+using BookStore.Common.Exceptions;
 using BookStore.Contracts.Commands;
 using BookStore.Contracts.Entities;
 using BookStore.Contracts.Queries;
@@ -28,9 +29,9 @@ namespace BookStore.BusinessLogic.Services.Domain
                 .ToList();
         }
 
-        public async Task<Book> GetBookAsync(int bookId)
+        public async Task<Book> GetBookAsync(int id)
         {
-            var model = await _bookRepository.GetBookByIdAsync(bookId);
+            var model = await GetBookByIdInternal(id);
             return MapToContract(model);
         }
 
@@ -43,7 +44,7 @@ namespace BookStore.BusinessLogic.Services.Domain
 
         public async Task<Book> UpdateBookAsync(int id, UpdateBookCommand command)
         {
-            var model = await _bookRepository.GetBookByIdAsync(id);
+            var model = await GetBookByIdInternal(id);
             model.Author = command.Author;
             model.Description = command.Description;
             model.Title = command.Title;
@@ -54,7 +55,8 @@ namespace BookStore.BusinessLogic.Services.Domain
 
         public async Task RemoveBookAsync(int id)
         {
-            var model = await _bookRepository.GetBookByIdAsync(id);
+            var model = await GetBookByIdInternal(id);
+
             await _bookRepository.RemoveAsync(model);
         }
 
@@ -77,6 +79,15 @@ namespace BookStore.BusinessLogic.Services.Domain
                 Description = model.Description,
                 Title = model.Title
             };
+        }
+
+        private async Task<DataAccess.Models.Book> GetBookByIdInternal(int id)
+        {
+            var model = await _bookRepository.GetBookByIdAsync(id);
+            if (model == null)
+                throw new EntityNotFoundException(nameof(Book), id);
+
+            return model;
         }
     }
 }

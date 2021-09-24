@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookStore.Common\BookStore.Common.csproj" />
     <ProjectReference Include="..\BookStore.Contracts\BookStore.Contracts.csproj" />
     <ProjectReference Include="..\BookStore.DataAccess\BookStore.DataAccess.csproj" />
   </ItemGroup>
