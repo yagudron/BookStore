@@ -1,4 +1,5 @@
 using BookStore.API.Utilities;
+using BookStore.API.Utilities.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -41,7 +42,8 @@ namespace BookStore.API
                 .AllowAnyHeader()
                 .AllowCredentials());
 
-            app.UseMiddleware<ErrorHandlerMiddleware>();
+            app.UseErrorLogging();
+            app.UseErrorHandling();
 
             app.UseHttpsRedirection();
 

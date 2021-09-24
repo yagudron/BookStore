@@ -10,15 +10,12 @@ using Microsoft.Extensions.Logging;
 namespace BookStore.API.Controllers
 {
     [ApiController, Route("api")]
-    //TODO: Add proper exception handling. (AK)
     public class BookController : ControllerBase
     {
-        private readonly ILogger<BookController> _logger;
         private readonly IBookService _bookService;
 
-        public BookController(ILogger<BookController> logger, IBookService bookService)
+        public BookController(IBookService bookService)
         {
-            _logger = logger;
             _bookService = bookService;
         }
         

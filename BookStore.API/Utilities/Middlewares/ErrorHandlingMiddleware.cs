@@ -5,14 +5,15 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BookStore.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
-namespace BookStore.API.Utilities
+namespace BookStore.API.Utilities.Middlewares
 {
-    public class ErrorHandlerMiddleware
+    public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public ErrorHandlerMiddleware(RequestDelegate next)
+        public ErrorHandlingMiddleware(RequestDelegate next)
         {
             _next = next;
         }
