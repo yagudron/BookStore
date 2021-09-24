@@ -1,9 +1,10 @@
-﻿using BookStore.DataAccess.Models;
+﻿using System.Threading.Tasks;
+using BookStore.DataAccess.Models;
 
 namespace BookStore.DataAccess.Interfaces
 {
     public interface IBookRepository : IRepository<Book>
     {
-        Book GetBookById(int id);
+        Task<Book> GetBookByIdAsync(int id);
     }
 }

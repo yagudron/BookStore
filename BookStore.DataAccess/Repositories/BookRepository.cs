@@ -1,6 +1,8 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using BookStore.DataAccess.Interfaces;
 using BookStore.DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.DataAccess.Repositories
 {
@@ -10,9 +12,9 @@ namespace BookStore.DataAccess.Repositories
         {
         }
 
-        public Book GetBookById(int id)
+        public async Task<Book> GetBookByIdAsync(int id)
         {
-            return GetAll().FirstOrDefault(b => b.Id == id);
+            return await GetAll().FirstOrDefaultAsync(b => b.Id == id);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BookStore.BusinessLogic.Interfaces;
 using BookStore.Contracts.Commands;
 using BookStore.Contracts.Entities;
@@ -8,7 +9,6 @@ using BookStore.DataAccess.Interfaces;
 
 namespace BookStore.BusinessLogic.Services.Domain
 {
-    //TODO: Use asnyc methods of the repository, propagete that to controller level.
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
@@ -24,25 +24,26 @@ namespace BookStore.BusinessLogic.Services.Domain
                 .Where(b => b.Title.Contains(query.Title) || query.Title == null)
                 .Where(b => b.Description.Contains(query.Description) || query.Description == null)
                 .Where(b => b.Author.Contains(query.Author) || query.Author == null)
-                .Select(MapToContract).ToList();
+                .Select(MapToContract)
+                .ToList();
         }
 
-        public Book GetBook(int bookId)
+        public async Task<Book> GetBookAsync(int bookId)
         {
-            var model = _bookRepository.GetBookById(bookId);
+            var model = await _bookRepository.GetBookByIdAsync(bookId);
             return MapToContract(model);
         }
 
-        public Book CreateBook(CreateBookCommand command)
+        public async Task<Book> CreateBookAsync(CreateBookCommand command)
         {
             var model = MapToModel(command);
-            var result = _bookRepository.Add(model);
+            var result = await _bookRepository.AddAsync(model);
             return MapToContract(result);
         }
 
-        public Book UpdateBook(int id, UpdateBookCommand command)
+        public async Task<Book> UpdateBookAsync(int id, UpdateBookCommand command)
         {
-            var model = _bookRepository.GetBookById(id);
+            var model = await _bookRepository.GetBookByIdAsync(id);
             model.Author = command.Author;
             model.Description = command.Description;
             model.Title = command.Title;
@@ -51,10 +52,10 @@ namespace BookStore.BusinessLogic.Services.Domain
             return MapToContract(result);
         }
 
-        public void RemoveBook(int id)
+        public async Task RemoveBookAsync(int id)
         {
-            var model = _bookRepository.GetBookById(id);
-            _bookRepository.Remove(model);
+            var model = await _bookRepository.GetBookByIdAsync(id);
+            await _bookRepository.RemoveAsync(model);
         }
 
         private static DataAccess.Models.Book MapToModel(CreateBookCommand command)
