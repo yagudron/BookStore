@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using BookStore.Common.Exceptions;
+using BookStore.BusinessLogic.Exceptions;
 using Microsoft.AspNetCore.Http;
 
 namespace BookStore.API.Utilities

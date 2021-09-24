@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStore.BusinessLogic.Exceptions;
 using BookStore.BusinessLogic.Interfaces;
-using BookStore.Common.Exceptions;
 using BookStore.Contracts.Commands;
 using BookStore.Contracts.Entities;
 using BookStore.Contracts.Queries;

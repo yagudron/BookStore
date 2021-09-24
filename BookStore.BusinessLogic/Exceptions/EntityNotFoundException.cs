@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookStore.Common.Exceptions
+namespace BookStore.BusinessLogic.Exceptions
 {
     public class EntityNotFoundException : KeyNotFoundException
     {
