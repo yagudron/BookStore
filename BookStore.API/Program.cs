@@ -5,6 +5,7 @@ using BookStore.BusinessLogic.Services.Domain;
 using BookStore.DataAccess;
 using BookStore.DataAccess.Interfaces;
 using BookStore.DataAccess.Repositories;
+using BookStore.DataAccess.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace BookStore.API
             try
             {
                 var context = services.GetRequiredService<BookStoreContext>();
-                DbInitializer.Initialize(context);
+                DatabaseInitializer.Initialize(context);
             }
             catch (Exception ex)
             {

@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using BookStore.DataAccess.Models;
 
-namespace BookStore.DataAccess
+namespace BookStore.DataAccess.Utilities
 {
-    public static class DbInitializer
+    public static class DatabaseInitializer
     {
         public static void Initialize(BookStoreContext context)
         {
