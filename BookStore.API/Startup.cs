@@ -19,6 +19,7 @@ namespace BookStore.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen();
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
         }
@@ -29,6 +30,12 @@ namespace BookStore.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BookStore API V1");
+                });
             }
 
             app.UseHttpsRedirection();
